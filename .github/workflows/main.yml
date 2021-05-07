@@ -1,0 +1,24 @@
+name: Deploy app to Heroku
+
+on:
+  push:
+    branches:
+      - master
+env:
+  $APP_NAME : apptpdevops
+  $HEROKU_EMAIL : contact@etiennedaubanay.fr
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Liste
+        run: ls
+          
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with: 
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: $HEROKU_EMAIL
